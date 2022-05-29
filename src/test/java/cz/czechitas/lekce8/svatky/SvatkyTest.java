@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.time.Month;
 import java.time.MonthDay;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class SvatkyTest {
   private final Svatky svatky = new Svatky();
@@ -51,11 +50,12 @@ class SvatkyTest {
 
   @Test
   void zeny() {
-    assertEquals(276, svatky.muzi().count());
+    assertEquals(276, svatky.zeny().count());
   }
 
   @Test
   void den() {
+    assertEquals(4, svatky.den(MonthDay.of(12, 24)).count());
     assertIterableEquals(
             Arrays.asList("Adam", "Eva", "Gaia", "Kračun"),
             svatky.den(MonthDay.of(12, 24))
@@ -117,7 +117,8 @@ class SvatkyTest {
 
   @Test
   void pocetUnikatnichJmen() {
-    assertEquals(543, svatky.pocetUnikatnichJmen());
+    //změna z 543 na 544
+    assertEquals(544, svatky.pocetUnikatnichJmen());
   }
 
   @Test
@@ -167,7 +168,7 @@ class SvatkyTest {
     assertIterableEquals(
             Arrays.asList(
                     "Adam",
-                    "Eve",
+                    "Eva",
                     "Gaia",
                     "Kračun",
                     "Štěpán",
